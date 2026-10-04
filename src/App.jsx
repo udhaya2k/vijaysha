@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import BirthdayCard from './components/BirthdayCard';
 import ButterflyField from './components/ButterflyField';
 import Footer from './components/Footer';
@@ -20,16 +20,35 @@ function App() {
   const [butterflyClicks, setButterflyClicks] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [burstSeed, setBurstSeed] = useState(0);
+  const [audioError, setAudioError] = useState('');
+  const audioRef = useRef(null);
+
+  const playSurpriseAudio = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    setAudioError('');
+    audio.currentTime = 0;
+    audio.play().catch(() => {
+      setAudioError('The surprise audio could not be played. Please check your connection and try again.');
+    });
+  };
 
   const handlePrimaryAction = () => {
     setActiveTab('Home');
     setIsCardOpen(true);
     setBurstSeed((seed) => seed + 1);
+    playSurpriseAudio();
     document.getElementById('home')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleCardToggle = () => {
-    if (!isCardOpen) setBurstSeed((seed) => seed + 1);
+    if (!isCardOpen) {
+      setBurstSeed((seed) => seed + 1);
+      playSurpriseAudio();
+    } else {
+      audioRef.current?.pause();
+    }
     setIsCardOpen(!isCardOpen);
   };
 
@@ -52,6 +71,7 @@ function App() {
 
   return (
     <div className="page-shell">
+      <audio ref={audioRef} src={siteConfig.surpriseAudioUrl} preload="none" />
       <ButterflyField burstSeed={burstSeed} />
       <div className="ambient-glow glow-one" />
       <div className="ambient-glow glow-two" />
@@ -83,6 +103,7 @@ function App() {
                     Open your little surprise 🦋
                   </button>
                 </div>
+                {audioError && <p className="audio-error" role="status">{audioError}</p>}
               </div>
 
               <BirthdayCard isOpen={isCardOpen} onToggle={handleCardToggle} message={siteConfig.birthdayMessage} />
@@ -90,14 +111,41 @@ function App() {
 
             <section className="info-grid section">
               <article className="glass-card about-card">
-                <p className="eyebrow">About this little website</p>
-                <h2>Just a small corner of the internet, made from a feeling I never really planned.</h2>
+                <p className="eyebrow">About this website, Vijaysha 🦋</p>
+
+                <h4>I don't really know how to explain this... so I made this instead.</h4>
+
                 <p>
-                  Some feelings arrive quietly, without being planned. I remember the good moments from that chapter with
-                  warmth, and wanted to make this small corner of the internet to wish you well. No big message—just a
-                  little birthday kindness, freely given. 🦋
+                  I had this idea for a long time. I wanted to make something for you,
+                  but I didn't know what exactly. Then I thought, why not just make a
+                  little website and put all the random things I wanted to say here.
                 </p>
-                <p className="dlf-note">And I still smile at the little nickname you gave me — DLF. 😂</p>
+
+                <p>
+                  There are some things I never said properly, some things I probably
+                  explained badly, and some things I just kept inside. You'll find a
+                  little bit of all of that here.
+                </p>
+
+                <p>
+                  Don't take everything here too seriously though 😂. Some parts are
+                  emotional, some are silly, and some are just me being me.
+                </p>
+
+                <p>
+                  I don't expect anything from you after seeing this except love. I just wanted to
+                  make something once, from my side, and leave it here for you.
+                </p>
+
+                <p>
+                  If you smile somewhere while going through this, then
+                  that's enough for me. 🦋
+                </p>
+
+                <p>
+                  And yes, I used AI to help me with some of the words and the coding 😅.
+                  But the thoughts behind all of this are mine.
+                </p>
               </article>
 
               <article className="glass-card dev-card">
@@ -138,7 +186,12 @@ function App() {
             </div>
             <div className="card-grid message-grid">
               {messages.map((message) => (
-                <MessageCard key={message.title} title={message.title} body={message.body} />
+                <MessageCard
+                  key={message.title}
+                  title={message.title}
+                  body={message.body}
+                  highlighted={message.highlighted}
+                />
               ))}
             </div>
           </section>
@@ -166,7 +219,12 @@ function App() {
             </div>
             <div className="card-grid memory-grid">
               {memories.map((memory) => (
-                <MemoryCard key={memory.title} title={memory.title} description={memory.description} image={memory.image} />
+                <MemoryCard
+                  key={memory.title}
+                  title={memory.title}
+                  description={memory.description}
+                  images={memory.images}
+                />
               ))}
             </div>
           </section>
@@ -176,18 +234,32 @@ function App() {
           <section className="section about-page">
             <div className="section-heading">
               <p className="eyebrow">About</p>
-              <h2>Built with React, a few gentle thoughts, and a little night-garden magic.</h2>
+              <h2>Why I made this 🦋</h2>
             </div>
 
             <div className="text-block glass-card">
               <p>
-                This is not a grand gesture. It is simply a tiny corner of the internet made with some time, a few memories,
-                and a little appreciation for the good moments that stayed with me. It was designed as a thoughtful birthday
-                surprise, with the butterfly theme as a gentle reminder of calm, softness, and good memories.
+                Honestly, I could have just sent you a normal birthday message. But I wanted to do something a little
+                different this time.
               </p>
               <p>
-                Built with React, designed personally, and created as a birthday surprise with a warm and respectful tone.
+                I had so many random thoughts, memories, songs and little things that reminded me of you. Putting all of
+                that into one normal message would have been way too much 😂, so I thought I&apos;d make a small website
+                instead.
               </p>
+              <p>
+                I also wanted to make something myself rather than just send something I found online. So I spent some time
+                designing it, writing the content, adding the little animations and putting everything together.
+              </p>
+              <p>
+                It&apos;s not meant to be anything big or serious. I just wanted to make something that feels like me and give
+                you a small surprise for your birthday.
+              </p>
+              <p>
+                And yes, I used AI for some help with the coding and arranging a few words 😅. But the idea, memories and
+                feelings behind this website are mine.
+              </p>
+              <p>That&apos;s basically why I made it. 🤍🦋</p>
             </div>
           </section>
         )}
@@ -196,8 +268,19 @@ function App() {
           <section className="section contact-page">
             <div className="section-heading">
               <p className="eyebrow">Contact</p>
-              <h2>If you ever feel like saying hi 👋</h2>
-              <p className="muted-copy">No pressure. This is just here.</p>
+              <h2>How to contact me 🦋</h2>
+            </div>
+
+            <div className="text-block glass-card">
+              <p>You already know how to reach me through the portfolio and contact options on this site.</p>
+              <p>
+                If you ever feel like talking, you know where to find me. I’ll always be happy to hear from you, whether
+                it’s just a random “hey” or a proper conversation after a long time. 😅
+              </p>
+              <p>
+                I’m not going anywhere with this message—I just wanted you to know that if you ever want to talk, I’ll be
+                here. 🤍🦋
+              </p>
             </div>
 
             <div className="contact-grid">

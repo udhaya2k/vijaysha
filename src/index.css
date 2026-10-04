@@ -286,9 +286,10 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(3.35rem, 6.2vw, 5.8rem);
-  letter-spacing: -0.04em;
-  max-width: 13ch;
+  font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  max-width: 11ch;
 }
 
 .subtitle {
@@ -297,6 +298,13 @@ h1 {
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.7;
   color: var(--text-soft);
+}
+
+.audio-error {
+  margin: 0.75rem 0 0;
+  color: #ffd1d1;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .cta-row {
@@ -475,6 +483,14 @@ h1 {
   gap: 1rem;
 }
 
+.message-card.highlighted {
+  border-color: rgba(247, 215, 145, 0.52);
+  background:
+    radial-gradient(circle at 100% 0, rgba(247, 215, 145, 0.13), transparent 42%),
+    linear-gradient(145deg, rgba(49, 45, 74, 0.96), rgba(12, 19, 34, 0.94));
+  box-shadow: 0 20px 52px rgba(2, 9, 25, 0.32), 0 0 24px rgba(247, 215, 145, 0.08);
+}
+
 .card-icon {
   display: inline-flex;
   width: 2.5rem;
@@ -558,6 +574,26 @@ h1 {
   display: block;
 }
 
+.youtube-link {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(191, 196, 255, 0.22);
+  border-radius: 999px;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.youtube-link:hover {
+  border-color: rgba(247, 215, 145, 0.48);
+  color: var(--gold);
+}
+
 .song-placeholder {
   display: flex;
   align-items: center;
@@ -581,16 +617,45 @@ h1 {
 .memory-visual {
   position: relative;
   height: 14rem;
+  overflow: hidden;
   background: linear-gradient(135deg, rgba(191, 156, 255, 0.18), rgba(125, 211, 252, 0.12));
   display: grid;
   place-items: center;
   border-bottom: 1px solid var(--border);
 }
 
+.memory-gallery {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.memory-image-link {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text);
+}
+
 .memory-visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.memory-image-link span {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(9, 13, 29, 0.72);
+  color: var(--text);
+  font-size: 0.68rem;
+  backdrop-filter: blur(8px);
 }
 
 .memory-placeholder {

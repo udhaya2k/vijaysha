@@ -1,10 +1,12 @@
 export const siteConfig = {
-  title: 'Happy Belated Birthday, Vijaysha 🦋',
-  subtitle: 'Some wishes arrive a little late… but they still come with good thoughts.',
+  title: 'For Someone I Couldn\'t Forget 🦋',
+  subtitle: 'A Very Belated Birthday Wishes, Vijay 🤍',
   birthdayMessage: {
-    heading: '🎁 A little something for you',
-    body: `Happy Belated Birthday, Vijaysha 🦋\n\nHope this year brings you peaceful days, good people, lots of reasons to smile, and many little moments that make you happy.\n\nThat's all. Take care ☺️`,
+    heading: 'I missed the date, but I didn’t want to miss wishing you. 🦋',
+    body: `I’ve put together this little surprise with some of the things I’ve wanted to tell you. I could only put around 50% of it into this website 😅, so take your time and explore it whenever you’re free.\n\nAnd if you do, just leave me a little acknowledgement through the Send Notes option below. 🤍🦋`,
   },
+  surpriseAudioUrl:
+    'https://llvefhhoqbmtnnipmwzx.supabase.co/storage/v1/object/public/VijayshaBirthdayWishes/Harleys%20In%20Hawaii%20Trimmed.mp3',
   portfolioUrl: 'https://portfolio.udhaya2k.workers.dev/',
   contactLinks: {
     instagram: '',
