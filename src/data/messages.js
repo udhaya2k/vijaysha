@@ -1,5 +1,11 @@
 export const messages = [
   {
+    title: 'A little note for you 🦋',
+    body:
+      'Hey hey Vijay… enakum pesanum nu romba trigger aagudhu. Please pesu. 😅🦋 Until then, I hope life is treating you well. Read further messages.',
+    highlighted: true,
+  },
+  {
     title: 'The first few days 🦋',
     body:
       'When I first met you at the office, I honestly had no idea that you would become such a significant part of my thoughts. Somewhere along those early days, I started feeling unusually comfortable around you. Without even realizing it, my eyes would look for you whenever I walked into the office, and somehow your presence made ordinary days feel a little different.',
