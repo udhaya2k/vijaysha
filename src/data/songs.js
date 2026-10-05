@@ -12,12 +12,6 @@ export const songs = [
     youtubeUrl: 'https://youtu.be/SnmB1ijMm1g?si=rTTqTsuGWtoPaCz2',
   },
   {
-    title: 'Minni Minni Tharakangal',
-    artist: 'Malayalam',
-    note: 'Whenever I hear Minni Minni Tharakangal, I find myself wishing you were there not to say anything, just to quietly admire your presence for a little while. 🦋',
-    youtubeUrl: 'https://youtu.be/iBpSuQTJdaU?si=Wcg-2CLRNTK6uVfj&t=128',
-  },
-  {
     title: 'Violin Song',
     artist: 'Telugu',
     note: 'This violin somehow brings out the selfish side of me, the part that wishes your love could be mine. I don’t know why my heart keeps craving your presence, but somehow, it still does. 🦋',

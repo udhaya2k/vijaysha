@@ -21,7 +21,7 @@ export default function BirthdayCard({ isOpen, onToggle, message }) {
         ) : (
           <div className="card-preview">
             <span className="spark">✨</span>
-            <span>Open your little surprise</span>
+            <span>Open your surprise</span>
           </div>
         )}
       </button>
