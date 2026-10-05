@@ -144,10 +144,11 @@ export default function NoteForm() {
         </form>
       ) : (
         <p className="note-setup-notice" role="status">
-          Supabase isn’t connected in this environment yet. Add <code>VITE_SUPABASE_URL</code> and{' '}
-          <code>VITE_SUPABASE_PUBLISHABLE_KEY</code> to <code>.env.local</code>, then run{' '}
-          <code>supabase/schema.sql</code> in your project’s SQL Editor to enable note sending. Leaving a note is
-          optional; you can enjoy the surprise without sharing anything.
+          Supabase isn’t connected in this environment yet. For a deployed site, add{' '}
+          <code>VITE_SUPABASE_URL</code> and <code>VITE_SUPABASE_PUBLISHABLE_KEY</code> to the Cloudflare Pages
+          project’s environment variables and redeploy. Also run <code>supabase/schema.sql</code> in the matching
+          Supabase project’s SQL Editor. Leaving a note is optional; you can enjoy the surprise without sharing
+          anything.
         </p>
       )}
     </section>
