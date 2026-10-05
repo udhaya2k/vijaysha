@@ -34,6 +34,8 @@ function App() {
   const [butterflyClicks, setButterflyClicks] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [showPortfolioInvite, setShowPortfolioInvite] = useState(false);
+  const [showHeadphoneNotice, setShowHeadphoneNotice] = useState(true);
+  const [headphoneNoticeCountdown, setHeadphoneNoticeCountdown] = useState(5);
   const [isDesktopViewport, setIsDesktopViewport] = useState(
     () => window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches,
   );
@@ -47,6 +49,18 @@ function App() {
   const [audioError, setAudioError] = useState('');
   const audioRef = useRef(null);
   const playbackRequestRef = useRef(0);
+
+  useEffect(() => {
+    const dismissTimeoutId = window.setTimeout(() => setShowHeadphoneNotice(false), 5000);
+    const countdownIntervalId = window.setInterval(() => {
+      setHeadphoneNoticeCountdown((seconds) => Math.max(seconds - 1, 0));
+    }, 1000);
+
+    return () => {
+      window.clearTimeout(dismissTimeoutId);
+      window.clearInterval(countdownIntervalId);
+    };
+  }, []);
 
   useEffect(() => {
     const desktopQuery = window.matchMedia('(min-width: 1024px) and (pointer: fine)');
@@ -164,6 +178,23 @@ function App() {
       </header>
 
       <main className="page-content">
+        {showHeadphoneNotice && (
+          <aside className="headphone-notice" role="note">
+            <span aria-hidden="true">🎧</span>
+            <p>
+              Headphones are recommended for a better experience while browsing and reading the messages. (
+              {headphoneNoticeCountdown}s)
+            </p>
+            <button
+              type="button"
+              className="headphone-notice-dismiss"
+              onClick={() => setShowHeadphoneNotice(false)}
+              aria-label="Dismiss headphone recommendation"
+            >
+              ×
+            </button>
+          </aside>
+        )}
         {activeTab === 'Home' && (
           <>
             <section className="hero panel" id="home">
