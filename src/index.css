@@ -227,6 +227,41 @@ img {
   padding: 2rem 0 3rem;
 }
 
+.headphone-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(191, 196, 255, 0.2);
+  border-radius: 1rem;
+  background: rgba(18, 26, 47, 0.78);
+  color: var(--text-soft);
+}
+
+.headphone-notice > span {
+  flex: 0 0 auto;
+  font-size: 1.3rem;
+}
+
+.headphone-notice p {
+  flex: 1;
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.headphone-notice-dismiss {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 .panel,
 .section {
   padding: 1rem 0;
