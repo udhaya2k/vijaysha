@@ -22,38 +22,72 @@ function App() {
   const [burstSeed, setBurstSeed] = useState(0);
   const [audioError, setAudioError] = useState('');
   const audioRef = useRef(null);
+  const playbackRequestRef = useRef(0);
 
-  const playSurpriseAudio = () => {
+  const playAudio = (src) => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const playbackRequest = ++playbackRequestRef.current;
     setAudioError('');
-    audio.currentTime = 0;
-    audio.play().catch(() => {
-      setAudioError('The surprise audio could not be played. Please check your connection and try again.');
+    if (audio.getAttribute('src') !== src) {
+      audio.src = src;
+    } else {
+      audio.pause();
+      if (audio.readyState > 0) {
+        audio.currentTime = 0;
+      }
+    }
+    audio.play().catch((error) => {
+      console.error('Audio playback failed.', error);
+      if (playbackRequest === playbackRequestRef.current) {
+        setAudioError(
+          error?.name === 'NotSupportedError'
+            ? 'This browser cannot decode the audio file. In Supabase Storage, set its Content-Type to audio/mp4 or replace it with a browser-supported audio file.'
+            : 'This audio could not be played. Check your connection and try again.',
+        );
+      }
     });
+  };
+
+  const stopAudio = () => {
+    playbackRequestRef.current += 1;
+    if (audioRef.current) {
+      audioRef.current.pause();
+      if (audioRef.current.readyState > 0) {
+        audioRef.current.currentTime = 0;
+      }
+    }
+    setAudioError('');
   };
 
   const handlePrimaryAction = () => {
     setActiveTab('Home');
     setIsCardOpen(true);
     setBurstSeed((seed) => seed + 1);
-    playSurpriseAudio();
+    playAudio(siteConfig.surpriseAudioUrl);
     document.getElementById('home')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleCardToggle = () => {
     if (!isCardOpen) {
       setBurstSeed((seed) => seed + 1);
-      playSurpriseAudio();
+      playAudio(siteConfig.surpriseAudioUrl);
     } else {
-      audioRef.current?.pause();
+      stopAudio();
     }
     setIsCardOpen(!isCardOpen);
   };
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+    if (tab === 'Little Messages') {
+      setIsCardOpen(false);
+      stopAudio();
+      playAudio(siteConfig.littleMessagesAudioUrl);
+    } else {
+      stopAudio();
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -71,7 +105,7 @@ function App() {
 
   return (
     <div className="page-shell">
-      <audio ref={audioRef} src={siteConfig.surpriseAudioUrl} preload="none" />
+      <audio ref={audioRef} preload="none" />
       <ButterflyField burstSeed={burstSeed} />
       <div className="ambient-glow glow-one" />
       <div className="ambient-glow glow-two" />
@@ -183,6 +217,7 @@ function App() {
             <div className="section-heading">
               <p className="eyebrow">Little Messages</p>
               <h2>Warm thoughts, softly spoken.</h2>
+              {audioError && <p className="audio-error" role="status">{audioError}</p>}
             </div>
             <div className="card-grid message-grid">
               {messages.map((message) => (
