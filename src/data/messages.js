@@ -3,7 +3,6 @@ export const messages = [
     title: 'A little note for you 🦋',
     body:
       'Hey hey Vijay… enakum pesanum nu romba trigger aagudhu. Please pesiru vijaysha 🦋 Until then, I hope life is treating you well. Read further messages.',
-    highlighted: true,
   },
   {
     title: 'The first few days 🦋',
