@@ -12,7 +12,7 @@ export const messages = [
   {
     title: 'Somewhere along the way',
     body:
-      'I never actually decided to fall for you. It just happened quietly. I started noticing the little things, looking forward to seeing you, and feeling genuinely happy whenever we talked. Your notifications became something I secretly looked forward to, and whenever you replied with that teasing side of yours, I swear it felt like I had won a tiny lottery 😂. Those moments meant much more to me than I ever knew how to explain.',
+      'I never actually decided to fall for you. It just happened quietly. I started noticing the little things, looking forward to seeing you, and feeling genuinely happy whenever we talked. Your notifications became something I secretly looked forward to, and whenever you replied with that teasing side of yours, I swear it felt like I had won a tiny lottery. Those moments meant much more to me than I ever knew how to explain.',
   },
   {
     title: 'When the office chapter ended',

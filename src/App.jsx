@@ -122,6 +122,9 @@ function App() {
     } else if (tab === 'Memories') {
       stopAudio();
       playAudio(siteConfig.memoriesAudioUrl);
+    } else if (tab === 'Contact') {
+      stopAudio();
+      playAudio(siteConfig.contactAudioUrl);
     } else {
       stopAudio();
     }
@@ -199,8 +202,8 @@ function App() {
                 </p>
 
                 <p>
-                  Don't take everything here too seriously though 😂. Some parts are
-                  emotional, some are silly, and some are just me being me.
+                  Don't take everything here too seriously though. Some parts are
+                  emotional, some are silly, and some are just me being me (But Real, Babe).
                 </p>
 
                 <p>
@@ -214,8 +217,8 @@ function App() {
                 </p>
 
                 <p>
-                  And yes, I used AI to help me with some of the words and the coding 😅.
-                  But the thoughts behind all of this are mine.
+                  And yes, I used AI to help me with some of the words and the coding.
+                  But the thoughts behind all of this are completely mine.
                 </p>
               </article>
 
@@ -298,7 +301,7 @@ function App() {
               </p>
               <p>
                 I had so many random thoughts, memories, songs and little things that reminded me of you. Putting all of
-                that into one normal message would have been way too much 😂, so I thought I&apos;d make a small website
+                that into one normal message would have been way too much, so I thought I&apos;d make a small website
                 instead.
               </p>
               <p>
@@ -313,11 +316,11 @@ function App() {
                 you a small surprise for your birthday.
               </p>
               <p>
-                And yes, I used AI for some help with the coding and arranging a few words 😅. But the idea, memories and
+                And yes, I used AI for some help with the coding and arranging a few words. But the idea, memories and
                 feelings behind this website are mine.
               </p>
               <p>That&apos;s basically why I made it. 🤍🦋</p>
-              <p>Think I hope you like it! 😊</p>
+              <p>Think I hope you like this Dear ❤️! 😊</p>
             </div>
           </section>
         )}
@@ -333,7 +336,7 @@ function App() {
               <p>You already know how to reach me through the portfolio and contact options on this site.</p>
               <p>
                 If you ever feel like talking, you know where to find me. I’ll always be happy to hear from you, whether
-                it’s just a random “hey” or a proper conversation after a long time. 😅
+                it’s just a random “hey” or a proper conversation after a long time 💌. 
               </p>
               <p>
                 I’m not going anywhere with this message—I just wanted you to know that if you ever want to talk, I’ll be
@@ -369,7 +372,7 @@ function App() {
 
       {showEasterEgg && (
         <div className="easter-egg" role="status" aria-live="polite">
-          <p>Okay okay… enough butterflies 😂🦋</p>
+          <p>Okay okay… enough butterflies 🦋</p>
           <button type="button" onClick={() => setShowEasterEgg(false)}>
             Reset
           </button>

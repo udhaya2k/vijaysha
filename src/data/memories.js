@@ -18,14 +18,14 @@ export const memories = [
     tone: 'quiet',
     title: 'The messages I pretended not to see',
     description:
-      'I saw some of the messages you sent and later deleted. I didn’t ask you about them. I just acted like I hadn’t seen anything and tried to keep things normal whenever we talked or you called. Looking back, it was probably a little weird 😂, but at that time I didn’t want to make things more awkward.',
+      'I saw some of the messages you sent and later deleted. I didn’t ask you about them. I just acted like I hadn’t seen anything and tried to keep things normal whenever we talked or you called. Looking back, it was probably a little weird, but at that time I didn’t want to make things more awkward.',
   },
   {
     chapter: 'A deeper feeling',
     tone: 'reflective',
     title: 'Something I should admit',
     description:
-      'Okay, one thing I should tell you 😅. This is the deepest feeling I’ve had for someone. It wasn’t my first crush. I’ve liked someone before, and that story ended as a friendship that still has a good connection. But with you, it became something much deeper than I expected.',
+      'Okay, one thing I should tell you. This is the deepest feeling I’ve had for someone. It wasn’t my first crush. I’ve liked someone before, and that story ended as a friendship that still has a good connection. But with you, it became something much deeper than I expected.',
   },
   {
     chapter: 'Trying to move forward',
@@ -46,13 +46,13 @@ export const memories = [
     tone: 'reflective',
     title: 'There is still a lot I haven’t said',
     description:
-      'What I’ve put on this website is probably only 40–50% of what I wanted to tell you. There are still many things I left out because I didn’t know how to say them. And the funny part is, I probably know less than 10% of what goes on in your mind. 😂 Maybe that’s why I’ve been trying to understand everything for so long.',
+      'What I’ve put on this website is probably only 40–50% of what I wanted to tell you. There are still many things I left out because I didn’t know how to say them. And the funny part is, I probably know less than 10% of what goes on in your mind. Maybe that’s why I’ve been trying to understand everything for so long.',
   },
   {
     chapter: 'Saying it at last',
     tone: 'honest',
     title: 'One important thing I want to say',
     description:
-      'Sathiyama mudila di… pesaama iruka mudila. Seriously Rombave pudichuruchu. Ippovum overcome panna mudiyama struggle pannitu irukan. Incase interest illanaa just send me one notes. I will choose someone else later if I needed 😅. Just kidding ma. I tried staying quiet. I tried moving on. I tried keeping myself busy. But every time I thought I was finally getting over it, somehow you would come back into my mind. So yeah… this time I just decided to say it instead of keeping it inside.',
+      'Sathiyama mudila di… pesaama iruka mudila. Seriously Rombave pudichuruchu. Ippovum overcome panna mudiyama struggle pannitu irukan. Incase interest illanaa just send me one notes. I will choose someone else later if I needed. Just kidding ma. I tried staying quiet. I tried moving on. I tried keeping myself busy. But every time I thought I was finally getting over it, somehow you would come back into my mind. So yeah… this time I just decided to say it instead of keeping it inside.',
   },
 ];
