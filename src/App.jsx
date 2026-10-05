@@ -1,11 +1,12 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import BirthdayCard from './components/BirthdayCard';
 import ButterflyField from './components/ButterflyField';
 import Footer from './components/Footer';
-import MemoryCard from './components/MemoryCard';
-import MessageCard from './components/MessageCard';
+import MemoriesSlider from './components/MemoriesSlider';
+import MessageList from './components/MessageList';
 import Navbar from './components/Navbar';
 import NoteForm from './components/NoteForm';
+import PortfolioInvite from './components/PortfolioInvite';
 import SongCard from './components/SongCard';
 import { navItems, siteConfig } from './data/config';
 import { memories } from './data/memories';
@@ -14,15 +15,46 @@ import { songs } from './data/songs';
 
 const hasMeaningfulLink = (value) => typeof value === 'string' && value.trim().length > 0;
 
+const getBurstOrigin = (event) => {
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const x = event.clientX || bounds.left + bounds.width / 2;
+  const y = event.clientY || bounds.top + bounds.height / 2;
+
+  return {
+    x: `${(x / window.innerWidth) * 100}%`,
+    y: `${(y / window.innerHeight) * 100}%`,
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+};
+
 function App() {
   const [activeTab, setActiveTab] = useState('Home');
   const [isCardOpen, setIsCardOpen] = useState(false);
   const [butterflyClicks, setButterflyClicks] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const [showPortfolioInvite, setShowPortfolioInvite] = useState(false);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(
+    () => window.matchMedia('(min-width: 1024px) and (pointer: fine)').matches,
+  );
   const [burstSeed, setBurstSeed] = useState(0);
+  const [burstOrigin, setBurstOrigin] = useState({
+    x: '50%',
+    y: '43%',
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
   const [audioError, setAudioError] = useState('');
   const audioRef = useRef(null);
   const playbackRequestRef = useRef(0);
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 1024px) and (pointer: fine)');
+    const updateViewportEligibility = (event) => setIsDesktopViewport(event.matches);
+
+    desktopQuery.addEventListener('change', updateViewportEligibility);
+    return () => desktopQuery.removeEventListener('change', updateViewportEligibility);
+  }, []);
 
   const playAudio = (src) => {
     const audio = audioRef.current;
@@ -61,16 +93,18 @@ function App() {
     setAudioError('');
   };
 
-  const handlePrimaryAction = () => {
+  const handlePrimaryAction = (event) => {
     setActiveTab('Home');
     setIsCardOpen(true);
+    setBurstOrigin(getBurstOrigin(event));
     setBurstSeed((seed) => seed + 1);
     playAudio(siteConfig.surpriseAudioUrl);
     document.getElementById('home')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const handleCardToggle = () => {
+  const handleCardToggle = (event) => {
     if (!isCardOpen) {
+      setBurstOrigin(getBurstOrigin(event));
       setBurstSeed((seed) => seed + 1);
       playAudio(siteConfig.surpriseAudioUrl);
     } else {
@@ -85,6 +119,9 @@ function App() {
       setIsCardOpen(false);
       stopAudio();
       playAudio(siteConfig.littleMessagesAudioUrl);
+    } else if (tab === 'Memories') {
+      stopAudio();
+      playAudio(siteConfig.memoriesAudioUrl);
     } else {
       stopAudio();
     }
@@ -106,7 +143,7 @@ function App() {
   return (
     <div className="page-shell">
       <audio ref={audioRef} preload="none" />
-      <ButterflyField burstSeed={burstSeed} />
+      <ButterflyField burstSeed={burstSeed} burstOrigin={burstOrigin} />
       <div className="ambient-glow glow-one" />
       <div className="ambient-glow glow-two" />
 
@@ -128,7 +165,7 @@ function App() {
           <>
             <section className="hero panel" id="home">
               <div className="hero-copy">
-                <p className="eyebrow">A little late, but sincerely</p>
+                <p className="eyebrow">A bit late, but it was my plan to surprise you by my wishes</p>
                 <h1>{siteConfig.title}</h1>
                 <p className="subtitle">{siteConfig.subtitle}</p>
 
@@ -190,21 +227,21 @@ function App() {
                 <div className="person-card">
                   <div className="avatar">U</div>
                   <div>
-                    <h3>Udhayaprakash S (yours DLF)</h3>
-                    <span>SAP ABAP Consultant</span>
+                    <h3>Udhayaprakash S</h3> 
+                      <h5>(DLF Buddy)</h5>
+                    <span>Associate SAP ABAP Consultant</span>
                   </div>
                 </div>
 
-                <p>Software engineer by profession, occasional overthinker by habit 😂.</p>
-                <a
+                <p>Software Developer by profession, occasional overthinker by habit 😂.</p>
+                <button
                   className="portfolio-link"
-                  href={siteConfig.portfolioUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="About me: open Udhaya Prakash's portfolio in a new tab"
+                  type="button"
+                  onClick={() => setShowPortfolioInvite(true)}
+                  aria-haspopup="dialog"
                 >
                   About me <span aria-hidden="true">↗</span>
-                </a>
+                </button>
               </article>
             </section>
 
@@ -219,16 +256,7 @@ function App() {
               <h2>Warm thoughts, softly spoken.</h2>
               {audioError && <p className="audio-error" role="status">{audioError}</p>}
             </div>
-            <div className="card-grid message-grid">
-              {messages.map((message) => (
-                <MessageCard
-                  key={message.title}
-                  title={message.title}
-                  body={message.body}
-                  highlighted={message.highlighted}
-                />
-              ))}
-            </div>
+            <MessageList messages={messages} />
           </section>
         )}
 
@@ -250,18 +278,9 @@ function App() {
           <section className="section">
             <div className="section-heading">
               <p className="eyebrow">Little Memories</p>
-              <h2>Some soft little fragments worth keeping.</h2>
+              <h2>Some soft moments worth keeping.</h2>
             </div>
-            <div className="card-grid memory-grid">
-              {memories.map((memory) => (
-                <MemoryCard
-                  key={memory.title}
-                  title={memory.title}
-                  description={memory.description}
-                  images={memory.images}
-                />
-              ))}
-            </div>
+            <MemoriesSlider memories={memories} />
           </section>
         )}
 
@@ -274,7 +293,7 @@ function App() {
 
             <div className="text-block glass-card">
               <p>
-                Honestly, I could have just sent you a normal birthday message. But I wanted to do something a little
+                I could have just sent you a normal birthday message. But I wanted to do something a little
                 different this time.
               </p>
               <p>
@@ -283,8 +302,11 @@ function App() {
                 instead.
               </p>
               <p>
+                Messages la sonnaa un brain dha CPU mathiri Heat aagirum.
+              </p>
+              <p>
                 I also wanted to make something myself rather than just send something I found online. So I spent some time
-                designing it, writing the content, adding the little animations and putting everything together.
+                designing my emotions, feelings and putting everything together.
               </p>
               <p>
                 It&apos;s not meant to be anything big or serious. I just wanted to make something that feels like me and give
@@ -295,6 +317,7 @@ function App() {
                 feelings behind this website are mine.
               </p>
               <p>That&apos;s basically why I made it. 🤍🦋</p>
+              <p>Think I hope you like it! 😊</p>
             </div>
           </section>
         )}
@@ -351,6 +374,14 @@ function App() {
             Reset
           </button>
         </div>
+      )}
+
+      {showPortfolioInvite && (
+        <PortfolioInvite
+          isDesktopViewport={isDesktopViewport}
+          portfolioUrl={siteConfig.portfolioUrl}
+          onClose={() => setShowPortfolioInvite(false)}
+        />
       )}
 
       <Footer />
