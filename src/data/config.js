@@ -1,11 +1,13 @@
 export const siteConfig = {
   birthdayMessage: {
     heading:
-      '❤️ Happy Belated Birthday, Dear Vijaysha! 🎈 Hope you had a really nice day, lots of smiles, good food, and plenty of fun (Everyday). 😊',
+      '❤️ Happy Belated Birthday, Dear Vijaysha! 🎈 Hope you had a really nice day, lots of smiles, good food, and plenty of fun (Everyday).',
 
-    body: `Okay, first things first... I got your birthday wrong 😅. For some reason, I had October 12 stuck in my head, and only recently realized it was actually September 27... or at least I think so.
+    body: `Okay, first things first... I got your birthday wrong. For some reason, I had October 12 stuck in my head, and only recently realized it was actually September 27... or at least I think so.
 
 So yeah, somehow I managed to remember the wrong date.
+
+I'm not ready to say goodbye to our connection ✌️. 
 
 Anyway, I put together this little surprise with a bunch of random things I wanted to share with you. What you're seeing here is probably only about 50% of it, so take a look whenever you feel like it.
 

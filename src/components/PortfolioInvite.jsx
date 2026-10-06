@@ -98,7 +98,7 @@ export default function PortfolioInvite({ isDesktopViewport, portfolioUrl, onClo
           ×
         </button>
         <span className="portfolio-invite-butterfly" aria-hidden="true">🦋</span>
-        <p className="eyebrow">A little question</p>
+        <p className="eyebrow">A Small Question</p>
         <h2 id="portfolio-invite-title">Will you like to talk to me?</h2>
         <p id="portfolio-invite-description">
           {isDesktopViewport
