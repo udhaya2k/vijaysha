@@ -129,11 +129,11 @@ function App() {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    if (tab === 'Little Messages') {
+    if (tab === 'Messages for you') {
       setIsCardOpen(false);
       stopAudio();
       playAudio(siteConfig.littleMessagesAudioUrl);
-    } else if (tab === 'Memories') {
+    } else if (tab === 'Memories for you') {
       stopAudio();
       playAudio(siteConfig.memoriesAudioUrl);
     } else if (tab === 'Contact') {
@@ -205,7 +205,8 @@ function App() {
 
                 <div className="cta-row">
                   <button type="button" className="primary-button" onClick={handlePrimaryAction}>
-                    Open your little surprise 🦋
+                    <span>Tap to open your surprise 🦋</span>
+                    <span className="primary-button-arrow" aria-hidden="true">→</span>
                   </button>
                 </div>
                 {audioError && <p className="audio-error" role="status">{audioError}</p>}
@@ -283,13 +284,17 @@ function App() {
           </>
         )}
 
-        {activeTab === 'Little Messages' && (
+        {activeTab === 'Messages for you' && (
           <section className="section">
             <div className="section-heading">
               <p className="eyebrow">Little Messages</p>
               <h2>Warm thoughts, softly spoken.</h2>
               {audioError && <p className="audio-error" role="status">{audioError}</p>}
             </div>
+            <aside className="message-featured-thought">
+              <p className="eyebrow">A thought to remember</p>
+              <h2>Someone taught me: Proper communication is important</h2>
+            </aside>
             <MessageList messages={messages} />
           </section>
         )}
@@ -308,7 +313,7 @@ function App() {
           </section>
         )}
 
-        {activeTab === 'Memories' && (
+        {activeTab === 'Memories for you' && (
           <section className="section">
             <div className="section-heading">
               <p className="eyebrow">Little Memories</p>
