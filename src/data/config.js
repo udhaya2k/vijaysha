@@ -31,4 +31,4 @@ Byee Buddy 🤍🦋`,
   },
 };
 
-export const navItems = ['Home', 'Little Messages', 'Songs', 'Memories', 'About', 'Contact'];
+export const navItems = ['Home', 'Messages for you', 'Songs', 'Memories for you', 'About', 'Contact'];

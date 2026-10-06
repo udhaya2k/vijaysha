@@ -355,16 +355,45 @@ h1 {
 }
 
 .primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 3.25rem;
   padding: 0.9rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.72);
   background: linear-gradient(120deg, #d5bdff, #a5dff5 56%, #f3d898);
   color: #0b1220;
   font-weight: 700;
-  box-shadow: 0 12px 28px rgba(134, 120, 219, 0.34), inset 0 1px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 0 rgba(73, 67, 122, 0.5), 0 12px 28px rgba(134, 120, 219, 0.34), inset 0 1px rgba(255, 255, 255, 0.7);
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.primary-button:hover {
-  box-shadow: 0 16px 36px rgba(134, 120, 219, 0.45), inset 0 1px rgba(255, 255, 255, 0.7);
-  transform: translateY(-3px);
+.primary-button:hover,
+.primary-button:focus-visible {
+  box-shadow: 0 10px 0 rgba(73, 67, 122, 0.5), 0 16px 36px rgba(134, 120, 219, 0.45), inset 0 1px rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.primary-button:focus-visible {
+  outline: 3px solid rgba(213, 189, 255, 0.8);
+  outline-offset: 4px;
+}
+
+.primary-button:active {
+  box-shadow: 0 2px 0 rgba(73, 67, 122, 0.5), 0 5px 12px rgba(134, 120, 219, 0.3), inset 0 1px rgba(255, 255, 255, 0.7);
+  transform: translateY(5px);
+}
+
+.primary-button-arrow {
+  display: grid;
+  width: 1.7rem;
+  height: 1.7rem;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(11, 18, 32, 0.12);
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .card-grid,
@@ -498,6 +527,31 @@ h1 {
 .section-heading h2 {
   font-size: clamp(2.2rem, 5vw, 3.5rem);
   letter-spacing: -0.03em;
+}
+
+.message-featured-thought {
+  max-width: 52rem;
+  margin: 0 0 1.5rem;
+  padding: 1.1rem 1.35rem 1.2rem;
+  border: 1px solid rgba(247, 215, 145, 0.28);
+  border-left: 4px solid var(--gold);
+  border-radius: 0.8rem 1.2rem 1.2rem 0.8rem;
+  background: linear-gradient(110deg, rgba(247, 215, 145, 0.1), rgba(185, 156, 255, 0.06));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.message-featured-thought .eyebrow {
+  margin-bottom: 0.35rem;
+  color: var(--gold);
+}
+
+.message-featured-thought h2 {
+  max-width: 46rem;
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
 }
 
 .message-card,
@@ -1633,21 +1687,34 @@ h1 {
     gap: 0.45rem;
     min-height: 2.65rem;
     padding: 0.5rem 0.85rem;
-    border: 1px solid rgba(191, 196, 255, 0.25);
+    border: 1px solid rgba(191, 196, 255, 0.42);
     border-radius: 999px;
-    background: linear-gradient(130deg, rgba(185, 156, 255, 0.2), rgba(125, 211, 252, 0.1));
+    background: linear-gradient(130deg, rgba(185, 156, 255, 0.26), rgba(125, 211, 252, 0.16));
     color: var(--text);
     font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
+    box-shadow: 0 4px 0 rgba(2, 7, 18, 0.42);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
   }
 
   .more-nav-trigger.active,
   .more-nav-trigger:hover,
   .more-nav-trigger:focus-visible {
     border-color: rgba(215, 185, 255, 0.65);
-    box-shadow: 0 0 22px rgba(185, 156, 255, 0.18);
+    box-shadow: 0 5px 0 rgba(2, 7, 18, 0.42), 0 0 22px rgba(185, 156, 255, 0.18);
     outline: none;
+    transform: translateY(-1px);
+  }
+
+  .more-nav-trigger:active {
+    box-shadow: 0 1px 0 rgba(2, 7, 18, 0.42);
+    transform: translateY(3px);
+  }
+
+  .more-nav-trigger:focus-visible {
+    outline: 3px solid rgba(213, 189, 255, 0.8);
+    outline-offset: 3px;
   }
 
   .more-butterfly {
@@ -1666,18 +1733,29 @@ h1 {
     stroke-width: 2;
   }
 
-  .more-hint {
-    position: absolute;
-    top: -0.6rem;
-    right: -0.45rem;
-    padding: 0.08rem 0.35rem;
-    border: 1px solid rgba(247, 215, 145, 0.45);
-    border-radius: 999px;
-    background: #22223a;
-    color: var(--gold);
-    font-size: 0.6rem;
-    line-height: 1.25;
-    animation: hintPulse 1.8s ease-in-out infinite;
+  .more-chevron {
+    width: 0.9rem;
+    height: 0.9rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+    transition: transform 160ms ease;
+  }
+
+  .more-nav-trigger[aria-expanded='true'] .more-chevron {
+    transform: rotate(180deg);
+  }
+
+  .cta-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta-row .primary-button {
+    width: auto;
+    max-width: 100%;
   }
 
   .more-nav-list {
@@ -1710,11 +1788,6 @@ h1 {
     background: rgba(185, 156, 255, 0.12);
     outline: none;
   }
-}
-
-@keyframes hintPulse {
-  0%, 100% { opacity: 0.72; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(-2px); }
 }
 
 @media (max-width: 560px) {

@@ -44,6 +44,7 @@ export default function Navbar({ items, activeTab, onChange }) {
             className={isMoreOpen ? 'more-nav-trigger active' : 'more-nav-trigger'}
             aria-expanded={isMoreOpen}
             aria-controls="more-nav-list"
+            aria-label={isMoreOpen ? 'Hide more pages' : 'Show more pages'}
             onClick={() => setIsMoreOpen((open) => !open)}
           >
             <svg className="more-butterfly" viewBox="0 0 64 64" aria-hidden="true">
@@ -52,7 +53,9 @@ export default function Navbar({ items, activeTab, onChange }) {
               <path className="more-butterfly-body" d="M32 27c-3 6-3 13 0 20 3-7 3-14 0-20Z" />
             </svg>
             <span>More</span>
-            <span className="more-hint" aria-hidden="true">Tap</span>
+            <svg className="more-chevron" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m3 6 5 5 5-5" />
+            </svg>
           </button>
           {isMoreOpen && (
             <ul className="more-nav-list" id="more-nav-list" aria-label="More pages">
