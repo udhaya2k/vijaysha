@@ -2,7 +2,7 @@ export const messages = [
   {
     title: 'A little note for you 🦋',
     body:
-      'Hey hey Vijay… enakum pesanum nu romba trigger aagudhu. Please pesiru vijaysha 🦋 Until then, I hope life is treating you well. Read further messages.',
+      'Hey hey Vijay… enakum pesanum nu romba trigger aagudhu. Please pesiru vijaysha 🦋 Until.. anyway start reading… there is still a lot more coming.',
   },
   {
     title: 'The first few days 🦋',
@@ -50,13 +50,13 @@ export const messages = [
       'A lot has changed since the day we met, and I have learned to handle many things differently. But one feeling never completely disappeared. I still care about you, I still miss your presence, and somewhere inside me, my heart still craves the person I got to know during those days. I tried telling myself that I had moved on, but emotionally, I know I never completely did.',
   },
   {
-    title: 'No proposal, just honesty 🦋',
+    title: 'No proposal, just 🦋',
     body:
       'This is not a proposal, and it is not a request for anything from you. I do not want you to feel pressured to reply, explain anything, or change anything. I simply wanted to be honest about something I have carried for a long time. I love you. Maybe that feeling was never something I consciously chose, but it became real to me. Whatever happens after this, I will respect your space and your choice.',
   },
   {
     title: 'One last little thought',
     body:
-      'More than anything, I just wish I could see you again someday with none of the awkwardness from the past. Not to reopen anything or ask you for something, but simply to see the person whose presence once made ordinary days feel special. You are still someone I remember with warmth, and I genuinely hope life is kind to you. 🦋',
+      'If I could wish for one thing, it would be to see you again someday without all the awkwardness from before. Just a normal conversation, some random teasing, and maybe laughing about something stupid like we used to. That would honestly be nice. Until then, I hope life is treating you well. 🦋',
   },
 ];

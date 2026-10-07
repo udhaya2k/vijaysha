@@ -342,8 +342,20 @@ h1 {
   line-height: 1.5;
 }
 
+.audio-status {
+  margin: 0.75rem 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
 .cta-row {
   margin-top: 1.75rem;
+}
+
+.mobile-explore-hint {
+  display: none;
 }
 
 .primary-button,
@@ -1751,6 +1763,27 @@ h1 {
   .cta-row {
     display: flex;
     justify-content: center;
+  }
+
+  .mobile-explore-hint {
+    display: block;
+    margin: 1.25rem 0 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(215, 185, 255, 0.3);
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(185, 156, 255, 0.12), rgba(125, 211, 252, 0.08));
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .mobile-explore-hint > span {
+    margin-right: 0.35rem;
+  }
+
+  .mobile-explore-hint strong {
+    color: var(--lilac);
   }
 
   .cta-row .primary-button {

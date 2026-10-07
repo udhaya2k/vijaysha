@@ -117,7 +117,7 @@ export default function NoteForm() {
               onChange={(event) => setConsented(event.target.checked)}
               required
             />
-            <span>I agree that the name entered (or Anonymous if left blank), my message, and the submission time can be stored in Supabase for Udhaya (DLF) to read. Authorized project admins may also have access.</span>
+            <span>I agree that the name entered (or Anonymous if left blank), my message, and the submission time can be stored in Supabase for Authorized Person Udhaya (DLF) to read. Authorized project admins may also have access.</span>
           </label>
 
           <button

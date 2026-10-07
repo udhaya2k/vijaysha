@@ -47,6 +47,7 @@ function App() {
     height: window.innerHeight,
   });
   const [audioError, setAudioError] = useState('');
+  const [audioStatus, setAudioStatus] = useState('');
   const audioRef = useRef(null);
   const playbackRequestRef = useRef(0);
 
@@ -76,28 +77,38 @@ function App() {
 
     const playbackRequest = ++playbackRequestRef.current;
     setAudioError('');
+    setAudioStatus('Starting audio…');
     if (audio.getAttribute('src') !== src) {
       audio.src = src;
+      audio.load();
     } else {
       audio.pause();
       if (audio.readyState > 0) {
         audio.currentTime = 0;
       }
     }
-    audio.play().catch((error) => {
-      console.error('Audio playback failed.', error);
-      if (playbackRequest === playbackRequestRef.current) {
-        setAudioError(
-          error?.name === 'NotSupportedError'
-            ? 'This browser cannot decode the audio file. In Supabase Storage, set its Content-Type to audio/mp4 or replace it with a browser-supported audio file.'
-            : 'This audio could not be played. Check your connection and try again.',
-        );
-      }
-    });
+    audio.play()
+      .then(() => {
+        if (playbackRequest === playbackRequestRef.current) {
+          setAudioStatus('');
+        }
+      })
+      .catch((error) => {
+        console.error('Audio playback failed.', error);
+        if (playbackRequest === playbackRequestRef.current) {
+          setAudioStatus('');
+          setAudioError(
+            error?.name === 'NotSupportedError'
+              ? 'This browser cannot play this audio format.'
+              : 'This audio could not be played. Check your connection and try again.',
+          );
+        }
+      });
   };
 
   const stopAudio = () => {
     playbackRequestRef.current += 1;
+    setAudioStatus('');
     if (audioRef.current) {
       audioRef.current.pause();
       if (audioRef.current.readyState > 0) {
@@ -159,7 +170,12 @@ function App() {
 
   return (
     <div className="page-shell">
-      <audio ref={audioRef} preload="none" />
+      <audio
+        ref={audioRef}
+        preload="metadata"
+        onWaiting={() => setAudioStatus('Buffering audio…')}
+        onPlaying={() => setAudioStatus('')}
+      />
       <ButterflyField burstSeed={burstSeed} burstOrigin={burstOrigin} />
       <div className="ambient-glow glow-one" />
       <div className="ambient-glow glow-two" />
@@ -195,11 +211,13 @@ function App() {
             </button>
           </aside>
         )}
+        {audioStatus && <p className="audio-status" role="status">{audioStatus}</p>}
+        {audioError && <p className="audio-error" role="alert">{audioError}</p>}
         {activeTab === 'Home' && (
           <>
             <section className="hero panel" id="home">
               <div className="hero-copy">
-                <p className="eyebrow">A bit late, but it was my plan to surprise you by my wishes</p>
+                <p className="eyebrow">Pre planned by DLF. A bit late, but it was my plan to surprise you by my wishes</p>
                 <h1>{siteConfig.title}</h1>
                 <p className="subtitle">{siteConfig.subtitle}</p>
 
@@ -209,7 +227,11 @@ function App() {
                     <span className="primary-button-arrow" aria-hidden="true">→</span>
                   </button>
                 </div>
-                {audioError && <p className="audio-error" role="status">{audioError}</p>}
+                <p className="mobile-explore-hint">
+                  <span aria-hidden="true">✨</span>
+                  On Android Devices or IPhone Devices, tap <strong>More</strong> in the menu above to discover your messages,
+                  memories, and more little surprises!
+                </p>
               </div>
 
               <BirthdayCard isOpen={isCardOpen} onToggle={handleCardToggle} message={siteConfig.birthdayMessage} />
@@ -289,7 +311,6 @@ function App() {
             <div className="section-heading">
               <p className="eyebrow">Little Messages</p>
               <h2>Warm thoughts, softly spoken.</h2>
-              {audioError && <p className="audio-error" role="status">{audioError}</p>}
             </div>
             <aside className="message-featured-thought">
               <p className="eyebrow">A thought to remember</p>
