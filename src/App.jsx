@@ -373,8 +373,7 @@ function App() {
                 you a small surprise for your birthday.
               </p>
               <p>
-                And yes, I used AI for some help with the coding and arranging a few words. But the idea, memories and
-                feelings behind this website are mine.
+                The idea, memories, and feelings behind this website are my own.
               </p>
               <p>That&apos;s basically why I made it. 🤍🦋</p>
               <p>Think I hope you like this Dear ❤️! 😊</p>
