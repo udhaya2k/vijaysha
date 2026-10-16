@@ -354,10 +354,6 @@ h1 {
   margin-top: 1.75rem;
 }
 
-.mobile-explore-hint {
-  display: none;
-}
-
 .primary-button,
 .birthday-card,
 .easter-egg button {
@@ -1670,6 +1666,7 @@ h1 {
 
   .mobile-nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 0.45rem;
   }
@@ -1697,7 +1694,7 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 0.45rem;
-    min-height: 2.65rem;
+    min-height: 3rem;
     padding: 0.5rem 0.85rem;
     border: 1px solid rgba(191, 196, 255, 0.42);
     border-radius: 999px;
@@ -1705,9 +1702,16 @@ h1 {
     color: var(--text);
     font-weight: 700;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
     box-shadow: 0 4px 0 rgba(2, 7, 18, 0.42);
     transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  }
+
+  .more-nav-trigger.more-nav-undiscovered {
+    border-color: rgba(247, 215, 145, 0.55);
+    animation: moreAttention 2.8s ease-in-out infinite;
   }
 
   .more-nav-trigger.active,
@@ -1745,6 +1749,76 @@ h1 {
     stroke-width: 2;
   }
 
+  .more-nav-badge {
+    position: absolute;
+    top: -0.28rem;
+    right: -0.2rem;
+    display: grid;
+    width: 1.05rem;
+    height: 1.05rem;
+    place-items: center;
+    border: 1px solid rgba(12, 17, 30, 0.9);
+    border-radius: 50%;
+    background: var(--gold);
+    color: #30223d;
+    font-size: 0.65rem;
+    line-height: 1;
+    box-shadow: 0 0 10px rgba(247, 215, 145, 0.55);
+  }
+
+  .more-discovery-hint {
+    position: relative;
+    flex: 1 0 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 0.15rem;
+    min-height: 3rem;
+    margin: 0.35rem 0 0;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid rgba(215, 185, 255, 0.28);
+    border-radius: 0.9rem;
+    background: linear-gradient(120deg, rgba(185, 156, 255, 0.13), rgba(125, 211, 252, 0.09));
+    color: var(--text-soft);
+    font: inherit;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    text-align: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .more-discovery-hint:hover,
+  .more-discovery-hint:focus-visible {
+    border-color: rgba(215, 185, 255, 0.55);
+    color: var(--text);
+  }
+
+  .more-discovery-hint:focus-visible {
+    outline: 3px solid rgba(213, 189, 255, 0.8);
+    outline-offset: 3px;
+  }
+
+  .more-hint-action {
+    color: var(--lilac);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .more-discovery-hint::before {
+    position: absolute;
+    top: -0.3rem;
+    right: 1.35rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-top: 1px solid rgba(215, 185, 255, 0.35);
+    border-left: 1px solid rgba(215, 185, 255, 0.35);
+    background: #17182b;
+    content: '';
+    transform: rotate(45deg);
+  }
+
   .more-chevron {
     width: 0.9rem;
     height: 0.9rem;
@@ -1765,27 +1839,6 @@ h1 {
     justify-content: center;
   }
 
-  .mobile-explore-hint {
-    display: block;
-    margin: 1.25rem 0 0;
-    padding: 0.9rem 1rem;
-    border: 1px solid rgba(215, 185, 255, 0.3);
-    border-radius: 1rem;
-    background: linear-gradient(135deg, rgba(185, 156, 255, 0.12), rgba(125, 211, 252, 0.08));
-    color: var(--text-soft);
-    font-size: 0.9rem;
-    line-height: 1.55;
-    text-align: center;
-  }
-
-  .mobile-explore-hint > span {
-    margin-right: 0.35rem;
-  }
-
-  .mobile-explore-hint strong {
-    color: var(--lilac);
-  }
-
   .cta-row .primary-button {
     width: auto;
     max-width: 100%;
@@ -1801,25 +1854,42 @@ h1 {
     width: max-content;
     min-width: 12rem;
     max-width: calc(100vw - 2rem);
+    max-height: min(60vh, 24rem);
     margin: 0;
     padding: 0.45rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     list-style: none;
     border: 1px solid var(--border);
     border-radius: 1rem;
     background: rgba(12, 17, 30, 0.96);
     box-shadow: 0 18px 38px rgba(1, 7, 20, 0.45);
     backdrop-filter: blur(18px);
+    -webkit-overflow-scrolling: touch;
   }
 
   .more-nav-list .nav-link {
     width: 100%;
+    min-height: 3rem;
     text-align: left;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .more-nav-list .nav-link:hover,
   .more-nav-list .nav-link:focus-visible {
     background: rgba(185, 156, 255, 0.12);
     outline: none;
+  }
+}
+
+@keyframes moreAttention {
+  0%,
+  100% {
+    box-shadow: 0 4px 0 rgba(2, 7, 18, 0.42), 0 0 0 rgba(247, 215, 145, 0);
+  }
+  50% {
+    box-shadow: 0 4px 0 rgba(2, 7, 18, 0.42), 0 0 16px rgba(247, 215, 145, 0.28);
   }
 }
 

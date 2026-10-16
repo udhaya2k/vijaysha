@@ -227,11 +227,6 @@ function App() {
                     <span className="primary-button-arrow" aria-hidden="true">→</span>
                   </button>
                 </div>
-                <p className="mobile-explore-hint">
-                  <span aria-hidden="true">✨</span>
-                  On Android Devices or IPhone Devices, tap <strong>More</strong> in the menu above to discover your messages,
-                  memories, and more little surprises!
-                </p>
               </div>
 
               <BirthdayCard isOpen={isCardOpen} onToggle={handleCardToggle} message={siteConfig.birthdayMessage} />
