@@ -16,16 +16,16 @@ export const memories = [
   {
     chapter: 'What I left unsaid',
     tone: 'quiet',
-    title: 'The messages I pretended not to see',
+    title: 'Things I never brought up',
     description:
-      'I saw some of the messages you sent and later deleted. I didn’t ask you about them. I just acted like I hadn’t seen anything and tried to keep things normal whenever we talked or you called. Looking back, it was probably a little weird, but at that time I didn’t want to make things more awkward.',
+      'I noticed some messages that were later deleted, but I never brought them up. I tried to keep things normal whenever we talked. Looking back, maybe I was overthinking things, but I didn’t want to make our conversations more awkward than they already were.',
   },
   {
     chapter: 'A deeper feeling',
     tone: 'reflective',
     title: 'Something I should admit',
     description:
-      'Okay, one thing I should tell you. This is the deepest feeling I’ve had for someone. It wasn’t my first crush. I’ve liked someone before, and that story ended as a friendship that still has a good connection. But with you, it became something much deeper than I expected.',
+      'I didn’t expect to feel this strongly about someone. What started as a simple crush gradually became something more meaningful to me. I never planned for it to happen; it just did, somewhere along the way.',
   },
   {
     chapter: 'Trying to move forward',
@@ -34,25 +34,36 @@ export const memories = [
     description:
       'I tried to move on. I kept telling myself to forget about all this and focus on other things. I’m more open-minded than you might think, and I know life has to move forward. But somehow, you stayed in my mind. I could keep myself busy, but that feeling was still there when everything became quiet.',
   },
-  {
-    chapter: 'Honesty without pressure',
-    tone: 'honest',
-    title: 'One thing I want you to know',
-    description:
-      'I don’t know what you feel about me, and I’m not trying to change that. If you don’t want a relationship with me, I’ll accept it. Life will move on, and maybe I’ll meet someone else one day. But before that happens, I wanted you to know what I actually felt instead of hiding it.',
-  },
+
+{
+  chapter: 'Honesty without pressure',
+  tone: 'honest',
+  title: 'One thing I want you to know',
+  description:
+    'I don’t know exactly how you see me, and I’m not asking you to change your feelings. I just wanted to be honest about mine instead of keeping everything to myself. Whatever your feelings are, I respect your choice. I hope this helps you understand my side a little better.',
+},
+
   {
     chapter: 'Still unfinished',
     tone: 'reflective',
-    title: 'There is still a lot I haven’t said',
+    title: 'The things left unsaid',
     description:
-      'What I’ve put on this website is probably only 40–50% of what I wanted to tell you. There are still many things I left out because I didn’t know how to say them. And the funny part is, I probably know less than 10% of what goes on in your mind. Maybe that’s why I’ve been trying to understand everything for so long.',
+      'There’s still a lot I haven’t put into words here. Some things are difficult to explain, even when you know exactly how you feel. And the funny part? I’ve spent so much time trying to understand my own feelings that I still know very little about what goes on in your mind. 😅',
   },
   {
     chapter: 'Saying it at last',
     tone: 'honest',
     title: 'One important thing I want to say',
     description:
-      'Sathiyama mudila di… pesaama iruka mudila. Seriously Rombave pudichuruchu. Ippovum overcome panna mudiyama struggle pannitu irukan. Incase interest illanaa just send me one notes. I will choose someone else later if I needed. Just kidding ma. I tried staying quiet. I tried moving on. I tried keeping myself busy. But every time I thought I was finally getting over it, somehow you would come back into my mind. So yeah… this time I just decided to say it instead of keeping it inside.',
+      'Sathiyama, pesaama irukradhu kashtama irukku. Yean nu therila Unna rombave pudichiruchu, and honestly, I’m still figuring out how to handle these feelings. I tried staying quiet, keeping busy, and moving forward. But I felt that I should be honest instead of leaving everything unsaid. I know feelings can’t be forced, and I respect your choice. I just wanted you to know how I genuinely felt. 🦋',
   },
+
+{
+  chapter: 'With warm regards 🦋',
+  tone: 'warm',
+  title: 'விஜய்ஷா, என்றென்றும் 🦋',
+  description:
+    'இப்படிக்கு,\nஉங்கள் நினைவுடன்,\nஉதயா (DLF) 🦋🤍',
+},
+
 ];
