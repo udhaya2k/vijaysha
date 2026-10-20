@@ -16,9 +16,9 @@ export const messages = [
   },
 
   {
-    title: 'The notification problem 😂',
+    title: 'The notification problem incident',
     body:
-      'Your notifications had absolutely no business making me this happy 😂 One small reply from you, and suddenly my day had a background score. Sometimes I would check my phone for no reason, only to realise that the notification I was waiting for was still missing. Enna panradhu, madam… your chat had its own VIP status in my brain. 🦋'
+      'Your replies had a way of making my day a little better. Even a simple message from you could put a smile on my face. Sometimes, I’d open our chat just to revisit our old conversations. Enna panradhu, madam… without realising it, I’d given our little conversations a special place in my heart. 🦋🤍'
   },
 
   {
